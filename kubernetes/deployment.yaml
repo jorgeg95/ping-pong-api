@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-pong-api-deployment
+  labels:
+    app: ping-pong-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ping-pong-api
+  template:
+    metadata:
+      labels:
+        app: ping-pong-api
+    spec:
+      containers:
+      - name: ping-pong-api
+        image: <endpoint_of_registry>/<name_of_image>:<tag>
+        # example: my-private-reg.com:5000/ping-pong-api:latest
+        ports:
+        - containerPort: 8080
